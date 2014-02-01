@@ -1,0 +1,211 @@
+\documentclass[]{article}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage[portuguese]{babel}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{minted}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage[disable]{todonotes}
+
+\renewcommand{\mint}{\inputminted[
+	mathescape,
+	tabsize=3
+	%,linenos
+	%,frame=lines
+]}
+
+\title{{\bf Informatik-Algorithmen - Caparica Chaputa}%  \\\includegraphics[scale=0.50]{solo_mid.png}}
+		\\ {\large Faculdade de Ciências e Tecnologia da Universidade Nova de Lisboa}}
+\author{{\bf Daniel Parreira}
+		\and Eduardo Marques
+		\and Pedro Borges}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\listoftodos
+
+\section{Miscelaneous}
+
+\subsection{Notes}
+1 - Verify program limits regarding the data type (is \texttt{int} enough? or \texttt{long}?)\\
+2 - Verify possible problems with precision
+
+\subsection{Limits}
+\begin{tabular}{l c r}
+\hline
+& Maximum & Minimum \\
+\hline
+long & 9223372036854775807 & -9223372036854775808 \\
+\hline
+int & 2147483647 & -2147483648 \\
+\hline
+\end{tabular}
+
+\subsection{Fast I/O}
+\mint{java}{fastio.java}
+
+\clearpage
+
+%%%%%%%%%%%%%
+
+\section{Searching}
+
+\subsection{Median - Minimizing the average of the absolute deviations}
+\mint{java}{median.java}
+
+\subsection{Binary search}
+\mint{java}{binarysearch.java}
+
+\subsection{Ternary search - Finding the maxi/minimum of a (monotone) function}
+\mint{python}{ternary.py}
+
+\subsection{Backtracking using DFS}
+\mint{java}{dfsbacktraking.java}
+
+\subsection{A*}
+\mint{java}{astar.java}
+
+\clearpage
+
+%%%%%%%%%%%%%
+
+\section{Number Theory}
+
+\subsection{Combinations}
+\todo[inline]{Fazer e testar código em Java de $C^n_k$}
+\mint{java}{combinacoes.java}
+
+\subsection{Arranges (without repetition)}
+\todo[inline]{Fazer e testar código em Java de $A^n_k$}
+\mint{java}{arranjos.java}
+
+
+\subsection{Greatest Common Divisor}
+\mint{java}{gcd.java}
+
+\subsection{Least common multiple}
+$lcm(a,b) = ab / gcd(a,b)$
+
+\subsection{Equação Diofantina Linear}
+1) Existe uma solução para $ax + by = c$, se $d = mdc(a,b)$ divide $c$\\
+2) Se $d | c$, então determinando o $u$ e $v$ de  $ua + vb = d$, consegue-se encontrar uma solução se atribuirmos \\
+\begin{center}
+$x_0 = uc/d$ and $y_0 = vc/d$
+\end{center}
+Sendo todas as outras soluções dadas por \\
+\begin{center}
+$x = x_0 + (b/d) t$, $y = y_0 - (a/d)*t$ para $t \in \mathbb{Z}$
+\end{center}
+
+\subsection{Linear congruency}
+\mint{java}{mod.java}
+
+\subsection{Sieve of Erastóstenes}
+\mint{java}{sieve.java}
+
+\subsection{Fibonacci Numbers}
+\mint{java}{fibonacci.java}
+
+\subsection{Propriedades de Matrizes}
+{\large
+$$ A^1 + ... + A^{n-1} + A^n  = 
+ ( A^1 + ... + A^{n/2} ) + A^{\frac{n}{2}} . ( A^1 + ... + A^{\frac{n}{2}} ) $$
+}
+
+\subsection{Prime Factorization}
+\todo[inline]{prime factorization}
+\todo[inline]{Mais formulas de matrizes?}
+\todo[inline]{Probabilidades?}
+\todo[inline]{Triangulo de Pascal?}
+\todo[inline]{Geometria?}
+\todo[inline]{Flood-fill}
+
+\clearpage
+
+%%%%%%%%%%%%%
+
+\section{Dynamic Programming}
+\subsection{Unbounded Knapsack}
+$$m[0] = 0$$
+$$m[w] = max_{w_i \leq w}(v_i + m[w - w_i])$$
+\todo[inline]{Find unbounded Knapsack problem and post here the JAVA code}
+
+\subsection{Knapsack 0-1}
+\mint{java}{knapsack_0_1.java}
+
+\clearpage
+
+%%%%%%%%%%%%%
+
+\section{Graphs}
+
+\subsection{Minimum Spanning Tree}
+\subsubsection{Kruskal (when more vertices than edges)}
+\mint{java}{kruskal.java}
+\subsubsection{Prim (when more edges than vertices)}
+\mint{java}{prim.java}
+
+\subsection{Disjoint-set (Union Find)}
+\mint{java}{unionfind.java}
+
+\subsection{Depth First Search (Breadth with Queue instead of Stack)}
+\mint{java}{dfs.java}
+
+\subsection{Shortest Paths from A}
+\subsubsection{Dijkstra (no negative-edges)}
+\mint{java}{dijkstra.java}
+\subsubsection{Bellman Ford (detects negative cycles)}
+\mint{java}{bellman-ford.java}
+
+\subsection{All-Pairs Shortest Paths - Floyd-Warshall (no negative-cost cycles)}
+\mint{java}{floyd-warshall.java}
+
+\subsection{Max Flow - Edmonds-Karp}
+\mint{java}{edmonds-karp.java}
+
+\subsection{Topological Sort}
+\mint{java}{topological_sort.java}
+
+\subsection{Strongly Connected Components - Tarjan}
+\mint{java}{tarjan.java}
+
+\subsection{Articulation}
+\mint{java}{articulation.java}
+
+\clearpage
+%%%%%%%%%%%%%%%
+
+\section{Sorting algorithms}
+
+\subsection{MergeSort}
+\mint{java}{mergesort.java}
+
+\subsection{QuickSort}
+\mint{java}{quicksort.java}
+
+\clearpage
+%%%%%%%%%%%%%%%%
+
+\section{Computational Geometry}
+
+\subsection{Line equations}
+$$Ax+By=\alpha$$
+\begin{itemize}
+\item if $Ax+By=0$, intersected
+\item if $Ax+By>0$, above
+\item if $Ax+By<0$, under
+\end{itemize}
+
+\subsection{Closest Pairs in 2D - Quad Tree}
+\mint{java}{quadtree.java}
+
+\end{document}
