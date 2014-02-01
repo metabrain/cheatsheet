@@ -2,7 +2,7 @@
 
 \usepackage[utf8]{inputenc}
 
-\usepackage[portuguese]{babel}
+%\usepackage[english]{babel}
 \usepackage{fullpage}
 \usepackage{amsmath}
 \usepackage{graphicx}
@@ -207,5 +207,57 @@ $$Ax+By=\alpha$$
 
 \subsection{Closest Pairs in 2D - Quad Tree}
 \mint{java}{quadtree.java}
+
+\clearpage
+%%%%%%%%%%%%%%%%
+
+\section{Databases}
+
+\textbf{Principle of transaction} - sequence of successive DB operations that transform a database from a consistent state into another consistent state from BOT to EOT (Commit/Abort)
+\begin{itemize}
+\item ACID - Atomicity, Consistency, Isolation and Durability.
+\item A transaction will always come to an end.
+\item Normal (commit): changes are permanently stored within the DB.
+\item Abnormal (abort/rollback): already composed changes are taken back.
+\end{itemize}
+
+\textbf{Determine Serializability} - A schedule is serializable, IFF its precedence graph of commited transactions is acyclic. Determine all serializable schedules by topological sorting.
+
+\textbf{Deadlocks} - arise from cycling waiting dependencies between two or more transactions.
+
+\textbf{Lock-based/Pessimistic Synchronization} - use 2PL (acquire all then release all) on data objects used.
+\begin{itemize}
+\item Timeout, abort one of the transactions and then repeat it.
+\item Deadlock prevention - avoid deadlocks from the onset (not practicable in DBS)
+\item Deadlock avoidance - runtime support to detect potential deadlocks before they happen
+\item Deadlock detection - Runtime wait-for graph and cycle search for the detection of deadlocks and removal of those found by aborting one or several TAs that participate in the cycle until the deadlock is avoided.
+\end{itemize}
+
+\textbf{Lock-free/Optimistic Synchronization} - after transaction is processed, \textbf{validate} it. If no conflicts occurred during the transaction, commit the write set. Else, abort.
+\begin{itemize}
+\item Low risk of conflicts provide good performance (typical scenario in DBS).
+\item No deadlocks.
+\item Potentially more concurrent than the lock-based alternative.
+\item Might not be fair (starving a TA).
+\item Readset and writeset have to be kept for each transaction, more overhead.
+\end{itemize}
+
+\textbf{SQL Consistency Levels} - tradeoff between performance and consistency.
+\begin{itemize}
+\item 3 = SERIALIZABLE (best, but has more deadlocks because of long write/read locks)
+\item 2 = REPEATABLE READ (non-repeatabler read possible)
+\item 1 = READ COMMITTED (dirty-reads/lost updates possible)
+\item 0 = READ UNCOMMITTED (short write locks, "chaos")
+\end{itemize}
+
+\subsection{SQL commands (IBM db2)}
+\mint{sql}{db2.sql}
+
+\clearpage
+%%%%%%%%%%%%%%%%
+
+\section{Networking}
+
+
 
 \end{document}
